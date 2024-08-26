@@ -13,7 +13,7 @@ __device__ void WarpSharedMemReduce(volatile float* smem, int tid){
       x += smem[tid + 32]; __syncwarp();
       smem[tid] = x; __syncwarp();
     }
-    x += smem[tid + 16]; __syncwarp();
+    x += smem[tid + 16]; __syncwarp();        //为什么这里不做判断？如果blocksize<=16,是否会有问题？
     smem[tid] = x; __syncwarp();
     x += smem[tid + 8]; __syncwarp();
     smem[tid] = x; __syncwarp();
