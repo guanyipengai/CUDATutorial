@@ -38,7 +38,7 @@ __device__ void BlockSharedMemReduce(float* smem) {
     if (blockDim.x >= 64) {
       vshm[threadIdx.x] += vshm[threadIdx.x + 32];
     }
-    vshm[threadIdx.x] += vshm[threadIdx.x + 16];
+    vshm[threadIdx.x] += vshm[threadIdx.x + 16];    //blockdim.x<16时是否会发生数组越界访问？
     vshm[threadIdx.x] += vshm[threadIdx.x + 8];
     vshm[threadIdx.x] += vshm[threadIdx.x + 4];
     vshm[threadIdx.x] += vshm[threadIdx.x + 2]; 
